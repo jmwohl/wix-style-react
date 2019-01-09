@@ -46,7 +46,7 @@ describe('Box', () => {
       expect(true).toBeTruthy();
     });
 
-    eyes.it('should be rendered with margin', () => {
+    eyes.it('should be rendered with padding', () => {
       expect(true).toBeTruthy();
     });
 
