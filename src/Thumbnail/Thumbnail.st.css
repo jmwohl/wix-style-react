@@ -1,0 +1,65 @@
+:import {
+  -st-from: "wix-ui-backoffice/dist/src/colors.st.css";
+  -st-named: B10, B20, D55, WHITE;
+}
+
+.root {
+  -st-states: selected, disabled;
+  position: relative;
+  margin: 19px 0;
+  border: 1px solid #c8e7ff;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.root:selected {
+  border: 2px solid value(B10);
+}
+
+.root:selected:hover {
+  border: 2px solid value(B20);
+}
+
+.root:selected:disabled {
+  border: 2px solid value(D55);
+}
+
+.root:disabled {
+  border: 1px solid value(D55);
+  cursor: default;
+}
+
+.selectedIcon {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
+
+.root:selected::selectedIcon {
+  background: value(B10);
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: value(WHITE);
+}
+
+.root:selected:hover:not(:disabled)::selectedIcon {
+  background: value(B20);
+}
+
+.root:disabled::selectedIcon {
+  background: value(D55);
+}
+
+.root:disabled .title, .root:disabled .description {
+  color: value(D55);
+}
+
+.title {}
+.description {}

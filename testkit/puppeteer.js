@@ -94,3 +94,9 @@ import { dropdownPopoverDriverFactory } from '../src/DropdownPopover/DropdownPop
 export const dropdownPopoverTestkitFactory = puppeteerUniTestkitFactoryCreator(
   dropdownPopoverDriverFactory,
 );
+
+import { thumbnailDriverFactory } from '../src/Thumbnail/Thumbnail.driver';
+
+export const thumbnailTestkitFactory = puppeteerUniTestkitFactoryCreator(
+  thumbnailDriverFactory,
+);

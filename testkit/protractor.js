@@ -435,3 +435,9 @@ import { dropdownPopoverDriverFactory } from '../src/DropdownPopover/DropdownPop
 export const dropdownPopoverTestkitFactory = protractorUniTestkitFactoryCreator(
   dropdownPopoverDriverFactory,
 );
+
+import { thumbnailDriverFactory } from '../src/Thumbnail/Thumbnail.driver';
+
+export const thumbnailTestkitFactory = protractorUniTestkitFactoryCreator(
+  thumbnailDriverFactory,
+);
