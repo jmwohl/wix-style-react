@@ -20,13 +20,13 @@ const countries = [
   { name: 'Indiana', code: 'IA' },
 ];
 
-export const options = countries.map(country => ({
+const options = countries.map(country => ({
   ...country,
   value: country.name, // This can be any ReactNode
   id: country.code,
 }));
 
-class ExampleSelectSimple extends React.Component {
+class CountrySelection extends React.Component {
   constructor(props) {
     super(props);
 
@@ -34,6 +34,9 @@ class ExampleSelectSimple extends React.Component {
       tags: [],
       options,
     };
+
+    this.handleOnSelect = this.handleOnSelect.bind(this);
+    this.handleOnRemoveTag = this.handleOnRemoveTag.bind(this);
   }
 
   createTag({ countryName, countryCode }) {
@@ -43,7 +46,7 @@ class ExampleSelectSimple extends React.Component {
     };
   }
 
-  handleOnSelect = option => {
+  handleOnSelect(option) {
     console.log('onSelect(option): option=', option);
     const newTag = this.createTag({
       countryName: option.name,
@@ -51,12 +54,13 @@ class ExampleSelectSimple extends React.Component {
     });
 
     this.setState({ tags: [...this.state.tags, newTag] });
-  };
+  }
 
-  handleOnRemoveTag = tagId =>
+  handleOnRemoveTag(tagId) {
     this.setState({
       tags: this.state.tags.filter(currTag => currTag.id !== tagId),
     });
+  }
 
   render() {
     return (
@@ -72,4 +76,4 @@ class ExampleSelectSimple extends React.Component {
   }
 }
 
-export default ExampleSelectSimple;
+export default CountrySelection;

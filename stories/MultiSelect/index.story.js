@@ -1,11 +1,13 @@
 import React from 'react';
 import CodeExample from 'wix-storybook-utils/CodeExample';
+import LiveCodeExample from '../utils/Components/LiveCodeExample';
 import MultiSelect from '../../src/MultiSelect';
 
 import {
   tab,
   importExample,
   description,
+  liveCode,
   playground,
   testkit,
 } from 'wix-storybook-utils/Sections';
@@ -20,7 +22,6 @@ import {
 import readmeApi from '../../src/MultiSelect/README.API.md';
 import playgroundStoryConfig from '../components/MultiSelect/MultiSelectPlaygroundConfig';
 
-import ExampleSelectSimple from './ExampleSelectSimple';
 import ExampleSelectSimpleRaw from '!raw-loader!./ExampleSelectSimple';
 
 import ExampleSelectAutocomplete from './ExampleSelectAutocomplete';
@@ -45,15 +46,46 @@ import { storySettings } from './storySettings';
 
 import styles from './styles.scss';
 
+/**
+ * Strips imports and exports
+ *
+ */
+function processLive(code, ComponentName, label) {
+  const filteredCode = code
+    .split('\n')
+    .filter(line => !line.startsWith('import') && !line.startsWith('export'))
+    .join('\n');
+
+  return filteredCode + '\n\n' + createExampleRender(ComponentName, label);
+}
+
+function createExampleRender(Component, label) {
+  return `
+render(
+  <div style={{ width: '600px' }}>
+    <FormField label="${label}">
+      <${Component} />
+    </FormField>
+  </div>,
+);
+`;
+}
+
 const examples = (
   <div>
     <Title>Examples</Title>
     <SubTitle>Bihavior</SubTitle>
-    <CodeExample title="Select" code={ExampleSelectSimpleRaw}>
-      <div className={styles.exampleContainer}>
-        <ExampleSelectSimple />
-      </div>
-    </CodeExample>
+
+    <LiveCodeExample
+      compact
+      title="Select"
+      initialCode={processLive(
+        ExampleSelectSimpleRaw,
+        'CountrySelection',
+        'Select Countries',
+      )}
+      autoRender={false}
+    />
 
     <CodeExample
       title="Select + Autocomplete"
@@ -120,6 +152,13 @@ export default {
         importExample({
           source: "import MultiSelect from 'wix-style-react/MultiSelect';",
         }),
+
+        // liveCode({
+        //   title: 'Themes',
+        //   compact: true,
+        //   source: ExampleSelectSimpleLive,
+        //   components: { MultiSelect },
+        // }),
 
         renderSection(examples),
       ],
