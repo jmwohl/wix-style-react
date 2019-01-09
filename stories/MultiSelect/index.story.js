@@ -2,12 +2,12 @@ import React from 'react';
 import CodeExample from 'wix-storybook-utils/CodeExample';
 import LiveCodeExample from '../utils/Components/LiveCodeExample';
 import MultiSelect from '../../src/MultiSelect';
+import { contactItemBuilder } from 'wix-style-react/ContactItemBuilder';
 
 import {
   tab,
   importExample,
   description,
-  liveCode,
   playground,
   testkit,
 } from 'wix-storybook-utils/Sections';
@@ -26,7 +26,6 @@ import ExampleSelectSimpleRaw from '!raw-loader!./ExampleSelectSimple';
 
 import ExampleSelectAutocompleteRaw from '!raw-loader!./ExampleSelectAutocomplete';
 
-import ExampleSuggestions from './ExampleSuggestions';
 import ExampleSuggestionsRaw from '!raw-loader!./ExampleSuggestions';
 
 import ExampleTagInput from './ExampleTagInput';
@@ -103,11 +102,17 @@ const examples = (
       </div>
     </CodeExample>
 
-    <CodeExample title="Tag Input + Suggestions" code={ExampleSuggestionsRaw}>
-      <div className={styles.exampleContainer}>
-        <ExampleSuggestions />
-      </div>
-    </CodeExample>
+    <LiveCodeExample
+      compact
+      title="Tag Input + Suggestions"
+      initialCode={processLive(
+        ExampleSuggestionsRaw,
+        'ContactsInput',
+        'Enter Contact Emails',
+      )}
+      autoRender={false}
+      // scope={{ contactItemBuilder }}
+    />
 
     <CodeExample
       title="Tag Input + Selection"

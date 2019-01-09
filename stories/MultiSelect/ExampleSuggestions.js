@@ -12,7 +12,7 @@ const contacts = [
   { name: 'Jane Martin', email: 'janem@gmail.com' },
 ];
 
-export const options = contacts.map(contact => ({
+const options = contacts.map(contact => ({
   ...contact,
   ...contactItemBuilder({
     id: contact.email,
@@ -22,16 +22,21 @@ export const options = contacts.map(contact => ({
   }),
 }));
 
-class ExampleSuggestions extends React.Component {
-  nextId = 0;
-
+class ContactsInput extends React.Component {
   constructor(props) {
     super(props);
 
+    this.nextId = 0;
     this.state = {
       tags: [],
       inputValue: '',
     };
+
+    this.handleOnSelect = this.handleOnSelect.bind(this);
+    this.handleOnTagsAdded = this.handleOnTagsAdded.bind(this);
+    this.handleOnRemoveTag = this.handleOnRemoveTag.bind(this);
+    this.handleOnChange = this.handleOnChange.bind(this);
+    this.predicate = this.predicate.bind(this);
   }
 
   createTag({ name, email }) {
@@ -41,7 +46,7 @@ class ExampleSuggestions extends React.Component {
     };
   }
 
-  handleOnSelect = option => {
+  handleOnSelect(option) {
     console.log('onSelect(option): option=', option);
     const newTag = this.createTag({
       name: option.name,
@@ -49,34 +54,36 @@ class ExampleSuggestions extends React.Component {
     });
 
     this.setState({ tags: [...this.state.tags, newTag] });
-  };
+  }
 
-  handleOnRemoveTag = tagId => {
+  handleOnRemoveTag(tagId) {
     console.log(`onRemoveTag(tagId): tagId=${tagId})`);
     this.setState({
       tags: this.state.tags.filter(currTag => currTag.id !== tagId),
     });
-  };
+  }
 
-  handleOnChange = event => {
+  handleOnChange(event) {
     console.log(`onChange('${event.target.value}')`);
     this.setState({ inputValue: event.target.value });
-  };
+  }
 
-  handleOnTagsAdded = values => {
+  handleOnTagsAdded(values) {
     console.log(`onTagsAdded(values): values=${values}`);
     const tags = values.map(value => this.createTag({ email: value }));
     this.setState({ tags: [...this.state.tags, ...tags] });
-  };
+  }
 
-  predicate = option =>
-    `${option.name} + ${option.emial}`
+  predicate(option) {
+    return `${option.name} + ${option.emial}`
       .toLowerCase()
       .includes(this.state.inputValue.toLowerCase());
+  }
 
   render() {
     return (
       <MultiSelect
+        // If I remove this comment - the ReactLive get stuck
         dataHook="multi-select-standard"
         value={this.state.inputValue}
         onChange={this.handleOnChange}
@@ -93,4 +100,4 @@ class ExampleSuggestions extends React.Component {
   }
 }
 
-export default ExampleSuggestions;
+export default ContactsInput;
