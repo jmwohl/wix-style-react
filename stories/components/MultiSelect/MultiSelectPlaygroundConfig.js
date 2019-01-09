@@ -1,5 +1,3 @@
-import MultiSelect from '../../../src/MultiSelect';
-
 import { storySettings } from './storySettings';
 import { AutoExampleWrapper } from '../../AutoExampleWrapper';
 
