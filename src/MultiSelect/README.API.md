@@ -1,4 +1,4 @@
-## MultiSelect Properties
+# MultiSelect Properties
 
 | propName | propType | defaultValue | isRequired | description |
 |----------|----------|--------------|------------|-------------|
