@@ -20,6 +20,7 @@ const formatValue = value => isFinite(value) ? value * spacingUnit : `${value}`;
 
 const Box = props => {
   const {
+    dataHook,
     children,
     inline,
     align,
@@ -71,7 +72,7 @@ const Box = props => {
   };
 
   return (
-    <div className={rootClassNames} style={rootStyles}>
+    <div data-hook={dataHook} className={rootClassNames} style={rootStyles} >
       {children}
     </div>
   );
