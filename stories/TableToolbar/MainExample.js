@@ -8,6 +8,7 @@ import {
 } from 'wix-style-react/TableToolbar';
 
 import Card from 'wix-style-react/Card';
+import Box from 'wix-style-react/Box';
 import Search from 'wix-style-react/Search';
 import Dropdown from 'wix-style-react/Dropdown';
 
@@ -35,21 +36,21 @@ export default class MainExample extends React.Component {
             <Item>
               <Label>
                 Collection
-                <span style={{ width: '150px' }}>
+                <Box inline width={150}>
                   <Dropdown
                     options={collectionOptions}
                     selectedId={0}
                     roundInput
                   />
-                </span>
+                </Box>
               </Label>
             </Item>
             <Item>
               <Label>
                 Filter By
-                <span style={{ width: '86px' }}>
+                <Box inline width={86}>
                   <Dropdown options={filterOptions} selectedId={0} roundInput />
-                </span>
+                </Box>
               </Label>
             </Item>
           </ItemGroup>

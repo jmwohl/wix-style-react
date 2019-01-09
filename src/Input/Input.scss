@@ -24,7 +24,7 @@ $material-gap: 8px;
 .input {
   flex-grow: 1;
   flex-shrink: 1;
-  min-width: 20px;
+  width: 100%;
   padding: 0 $double-gap;
   margin: 0;
   border: 0;
