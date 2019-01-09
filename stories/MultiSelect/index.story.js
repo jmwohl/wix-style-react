@@ -2,7 +2,6 @@ import React from 'react';
 import CodeExample from 'wix-storybook-utils/CodeExample';
 import LiveCodeExample from '../utils/Components/LiveCodeExample';
 import MultiSelect from '../../src/MultiSelect';
-import { contactItemBuilder } from 'wix-style-react/ContactItemBuilder';
 
 import {
   tab,
@@ -23,18 +22,11 @@ import readmeApi from '../../src/MultiSelect/README.API.md';
 import playgroundStoryConfig from '../components/MultiSelect/MultiSelectPlaygroundConfig';
 
 import ExampleSelectSimpleRaw from '!raw-loader!./ExampleSelectSimple';
-
 import ExampleSelectAutocompleteRaw from '!raw-loader!./ExampleSelectAutocomplete';
-
 import ExampleSuggestionsRaw from '!raw-loader!./ExampleSuggestions';
-
-import ExampleTagInput from './ExampleTagInput';
 import ExampleTagInputRaw from '!raw-loader!./ExampleTagInput';
-
-import ExampleTagInputSelection from './ExampleTagInputSelection';
 import ExampleTagInputSelectionRaw from '!raw-loader!./ExampleTagInputSelection';
 
-import ExampleReorderable from './ExampleReorderable';
 import ExampleReorderableRaw from '!raw-loader!./ExampleReorderable';
 
 import ExampleThumbVariations from './ExampleThumbVariations';
@@ -96,11 +88,16 @@ const examples = (
       autoRender={false}
     />
 
-    <CodeExample title="Tag Input" code={ExampleTagInputRaw}>
-      <div className={styles.exampleContainer}>
-        <ExampleTagInput />
-      </div>
-    </CodeExample>
+    <LiveCodeExample
+      compact
+      title="Tag Input"
+      initialCode={processLive(
+        ExampleTagInputRaw,
+        'ExampleTagInput',
+        'Enter Any Tag',
+      )}
+      autoRender={false}
+    />
 
     <LiveCodeExample
       compact
@@ -111,23 +108,29 @@ const examples = (
         'Enter Contact Emails',
       )}
       autoRender={false}
-      // scope={{ contactItemBuilder }}
     />
 
-    <CodeExample
+    <LiveCodeExample
+      compact
       title="Tag Input + Selection"
-      code={ExampleTagInputSelectionRaw}
-    >
-      <div className={styles.exampleContainer}>
-        <ExampleTagInputSelection />
-      </div>
-    </CodeExample>
+      initialCode={processLive(
+        ExampleTagInputSelectionRaw,
+        'CountryInput',
+        'Enter Or Select Countries',
+      )}
+      autoRender={false}
+    />
 
-    <CodeExample title="Reorderable" code={ExampleReorderableRaw}>
-      <div className={styles.exampleContainer}>
-        <ExampleReorderable />
-      </div>
-    </CodeExample>
+    <LiveCodeExample
+      compact
+      title="Reorderable"
+      initialCode={processLive(
+        ExampleReorderableRaw,
+        'ExampleReorderable',
+        'Reorderable Numbers',
+      )}
+      autoRender={false}
+    />
 
     <CodeExample title="ThumbVariations" code={ExampleThumbVariationsRaw}>
       <div className={styles.exampleContainer}>

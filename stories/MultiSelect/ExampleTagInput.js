@@ -3,37 +3,40 @@ import React from 'react';
 import MultiSelect from 'wix-style-react/MultiSelect';
 
 class ExampleTagInput extends React.Component {
-  nextId = 0;
-
   constructor(props) {
     super(props);
 
+    this.nextId = 0;
     this.state = {
       tags: [],
       inputValue: '',
     };
+
+    this.handleOnTagsAdded = this.handleOnTagsAdded.bind(this);
+    this.handleOnRemoveTag = this.handleOnRemoveTag.bind(this);
+    this.handleOnChange = this.handleOnChange.bind(this);
   }
 
-  handleOnRemoveTag = tagId => {
+  handleOnRemoveTag(tagId) {
     console.log(`onRemoveTag(tagId): tagId=${tagId})`);
     this.setState({
       tags: this.state.tags.filter(currTag => currTag.id !== tagId),
     });
-  };
+  }
 
-  handleOnChange = event => {
+  handleOnChange(event) {
     console.log(`onChange('${event.target.value}')`);
     this.setState({ inputValue: event.target.value });
-  };
+  }
 
-  handleOnTagsAdded = values => {
+  handleOnTagsAdded(values) {
     console.log(`onTagsAdded(values): values=${values}`);
     const tags = values.map(value => {
       const tag = { id: String(this.nextId++), label: value };
       return tag;
     });
     this.setState({ tags: [...this.state.tags, ...tags] });
-  };
+  }
 
   render() {
     return (

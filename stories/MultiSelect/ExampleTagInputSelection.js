@@ -20,22 +20,27 @@ const countries = [
   { name: 'Indiana', code: 'IA' },
 ];
 
-export const options = countries.map(country => ({
+const options = countries.map(country => ({
   ...country,
   value: country.name, // This can be any ReactNode
   id: country.code,
 }));
 
-class ExampleTagInputSelection extends React.Component {
-  nextTagId = 0;
-
+class CountryInput extends React.Component {
   constructor(props) {
     super(props);
 
+    this.nextTagId = 0;
     this.state = {
       tags: [],
       inputValue: '',
     };
+
+    this.handleOnSelect = this.handleOnSelect.bind(this);
+    this.handleOnTagsAdded = this.handleOnTagsAdded.bind(this);
+    this.handleOnRemoveTag = this.handleOnRemoveTag.bind(this);
+    this.handleOnChange = this.handleOnChange.bind(this);
+    this.predicate = this.predicate.bind(this);
   }
 
   createTag({ countryName, countryCode }) {
@@ -45,7 +50,7 @@ class ExampleTagInputSelection extends React.Component {
     };
   }
 
-  handleOnSelect = option => {
+  handleOnSelect(option) {
     console.log('onSelect(option): option=', option);
     const newTag = this.createTag({
       countryName: option.name,
@@ -53,21 +58,21 @@ class ExampleTagInputSelection extends React.Component {
     });
 
     this.setState({ tags: [...this.state.tags, newTag] });
-  };
+  }
 
-  handleOnRemoveTag = tagId => {
+  handleOnRemoveTag(tagId) {
     console.log(`onRemoveTag(tagId): tagId=${tagId})`);
     this.setState({
       tags: this.state.tags.filter(currTag => currTag.id !== tagId),
     });
-  };
+  }
 
-  handleOnChange = event => {
+  handleOnChange(event) {
     console.log(`onChange('${event.target.value}')`);
     this.setState({ inputValue: event.target.value });
-  };
+  }
 
-  handleOnTagsAdded = values => {
+  handleOnTagsAdded(values) {
     console.log(`onTagsAdded(values): values=${values}`);
     const tags = values.map(value =>
       this.createTag({
@@ -75,17 +80,18 @@ class ExampleTagInputSelection extends React.Component {
       }),
     );
     this.setState({ tags: [...this.state.tags, ...tags] });
-  };
+  }
 
-  predicate = option =>
-    `${option.name} + ${option.emial}`
+  predicate(option) {
+    return `${option.name} + ${option.emial}`
       .toLowerCase()
       .includes(this.state.inputValue.toLowerCase());
+  }
 
   render() {
     return (
       <MultiSelect
-        dataHook="multi-select-input"
+        dataHook="multi-select-tag-input-selection"
         value={this.state.inputValue}
         onChange={this.handleOnChange}
         options={options}
@@ -100,4 +106,4 @@ class ExampleTagInputSelection extends React.Component {
   }
 }
 
-export default ExampleTagInputSelection;
+export default CountryInput;
