@@ -53,13 +53,25 @@ function createExampleRender(Component, label) {
   return `
 render(
   <div style={{ width: '600px' }}>
-    <FormField label="${label}">
-      <${Component} />
-    </FormField>
+    <Card>
+      <Card.Content>
+        <FormField label="${label}">
+          <${Component} />
+        </FormField>
+      </Card.Content>
+    </Card>
   </div>,
 );
 `;
 }
+
+const defaultLiveCodeProps = {
+  compact: true,
+  autoRender: false,
+  previewProps: {
+    className: styles.livePreview,
+  },
+};
 
 const examples = (
   <div>
@@ -67,39 +79,37 @@ const examples = (
     <SubTitle>Bihavior</SubTitle>
 
     <LiveCodeExample
-      compact
+      {...defaultLiveCodeProps}
       title="Select"
       initialCode={processLive(
         ExampleSelectSimpleRaw,
         'CountrySelection',
         'Select Countries',
       )}
-      autoRender={false}
     />
 
     <LiveCodeExample
-      compact
+      {...defaultLiveCodeProps}
       title="Select + Autocomplete"
       initialCode={processLive(
         ExampleSelectAutocompleteRaw,
         'CountrySelection',
         'Select Countries',
       )}
-      autoRender={false}
     />
 
     <LiveCodeExample
-      compact
+      {...defaultLiveCodeProps}
       title="Tag Input"
       initialCode={processLive(
         ExampleTagInputRaw,
         'ExampleTagInput',
         'Enter Any Tag',
       )}
-      autoRender={false}
     />
 
     <LiveCodeExample
+      {...defaultLiveCodeProps}
       compact
       title="Tag Input + Suggestions"
       initialCode={processLive(
@@ -107,29 +117,26 @@ const examples = (
         'ContactsInput',
         'Enter Contact Emails',
       )}
-      autoRender={false}
     />
 
     <LiveCodeExample
-      compact
+      {...defaultLiveCodeProps}
       title="Tag Input + Selection"
       initialCode={processLive(
         ExampleTagInputSelectionRaw,
         'CountryInput',
         'Enter Or Select Countries',
       )}
-      autoRender={false}
     />
 
     <LiveCodeExample
-      compact
+      {...defaultLiveCodeProps}
       title="Reorderable"
       initialCode={processLive(
         ExampleReorderableRaw,
         'ExampleReorderable',
         'Reorderable Numbers',
       )}
-      autoRender={false}
     />
 
     <CodeExample title="ThumbVariations" code={ExampleThumbVariationsRaw}>
