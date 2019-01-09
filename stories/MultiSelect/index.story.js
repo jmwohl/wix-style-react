@@ -24,7 +24,6 @@ import playgroundStoryConfig from '../components/MultiSelect/MultiSelectPlaygrou
 
 import ExampleSelectSimpleRaw from '!raw-loader!./ExampleSelectSimple';
 
-import ExampleSelectAutocomplete from './ExampleSelectAutocomplete';
 import ExampleSelectAutocompleteRaw from '!raw-loader!./ExampleSelectAutocomplete';
 
 import ExampleSuggestions from './ExampleSuggestions';
@@ -87,14 +86,16 @@ const examples = (
       autoRender={false}
     />
 
-    <CodeExample
+    <LiveCodeExample
+      compact
       title="Select + Autocomplete"
-      code={ExampleSelectAutocompleteRaw}
-    >
-      <div className={styles.exampleContainer}>
-        <ExampleSelectAutocomplete />
-      </div>
-    </CodeExample>
+      initialCode={processLive(
+        ExampleSelectAutocompleteRaw,
+        'CountrySelection',
+        'Select Countries',
+      )}
+      autoRender={false}
+    />
 
     <CodeExample title="Tag Input" code={ExampleTagInputRaw}>
       <div className={styles.exampleContainer}>

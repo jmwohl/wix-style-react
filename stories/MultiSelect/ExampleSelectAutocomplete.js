@@ -20,22 +20,25 @@ const countries = [
   { name: 'Indiana', code: 'IA' },
 ];
 
-export const options = countries.map(country => ({
+const options = countries.map(country => ({
   ...country,
   value: country.name, // This can be any ReactNode
   id: country.code,
 }));
 
-class ExampleSelectAutocomplete extends React.Component {
-  nextId = 0;
-
+class CountrySelection extends React.Component {
   constructor(props) {
     super(props);
-
+    this.nextId = 0;
     this.state = {
       tags: [],
       inputValue: '',
     };
+
+    this.handleOnSelect = this.handleOnSelect.bind(this);
+    this.handleOnRemoveTag = this.handleOnRemoveTag.bind(this);
+    this.handleOnChange = this.handleOnChange.bind(this);
+    this.predicate = this.predicate.bind(this);
   }
 
   createTag({ countryName, countryCode }) {
@@ -45,30 +48,33 @@ class ExampleSelectAutocomplete extends React.Component {
     };
   }
 
-  handleOnSelect = option => {
+  handleOnSelect(option) {
     console.log('onSelect(option): option=', option);
     const newTag = this.createTag({
       countryName: option.name,
       countryCode: option.code,
     });
     this.setState({ tags: [...this.state.tags, newTag] });
-  };
+  }
 
-  handleOnRemoveTag = tagId => {
+  handleOnRemoveTag(tagId) {
     console.log(`onRemoveTag(tagId): tagId=${tagId})`);
     this.setState({
       tags: this.state.tags.filter(currTag => currTag.id !== tagId),
     });
-  };
+  }
 
-  handleOnChange = event => {
+  handleOnChange(event) {
     console.log(`onChange('${event.target.value}')`);
     this.setState({ inputValue: event.target.value });
-  };
+  }
 
-  predicate = option =>
-    option.name &&
-    option.name.toLowerCase().includes(this.state.inputValue.toLowerCase());
+  predicate(option) {
+    return (
+      option.name &&
+      option.name.toLowerCase().includes(this.state.inputValue.toLowerCase())
+    );
+  }
 
   render() {
     return (
@@ -87,4 +93,4 @@ class ExampleSelectAutocomplete extends React.Component {
   }
 }
 
-export default ExampleSelectAutocomplete;
+export default CountrySelection;
