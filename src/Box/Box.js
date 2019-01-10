@@ -17,7 +17,8 @@ const verticalAlignmentValues = {
 };
 
 /** In case the value is a number, it's multiplied by the spacing unit. Otherwise, it's converted to a string */
-const formatSpacingValue = value => isFinite(value) ? value * spacingUnit : `${value}`;
+const formatSpacingValue = value =>
+  isFinite(value) ? value * spacingUnit : `${value}`;
 
 /**
  * 📦 Box is a wrapper component that provides a way to align, space and resize its children - easily and straightforwardly.
@@ -76,7 +77,7 @@ const Box = props => {
   };
 
   return (
-    <div data-hook={dataHook} className={rootClassNames} style={rootStyles} >
+    <div data-hook={dataHook} className={rootClassNames} style={rootStyles}>
       {children}
     </div>
   );

@@ -58,13 +58,16 @@ describe('Box', () => {
   describe('Examples', () => {
     beforeAll(async () => await browser.get(storyUrlWithExamples));
 
-    eyes.it('should render a box that contains three boxes which are aligned horizontally and vertically', async () => {
-      const dataHook = 'storybook-box-within-box';
-      const element = byDataHook(dataHook);
+    eyes.it(
+      'should render a box that contains three boxes which are aligned horizontally and vertically',
+      async () => {
+        const dataHook = 'storybook-box-within-box';
+        const element = byDataHook(dataHook);
 
-      await waitForVisibilityOf(element, `Cannot find ${dataHook}`);
+        await waitForVisibilityOf(element, `Cannot find ${dataHook}`);
 
-      expect(true).toBeTruthy();
-    });
+        expect(true).toBeTruthy();
+      },
+    );
   });
 });
