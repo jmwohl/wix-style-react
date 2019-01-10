@@ -4,9 +4,9 @@
 }
 
 .root {
-  -st-states: selected, disabled;
+  -st-states: selected, disabled, size(enum(tiny, small, medium));
   position: relative;
-  margin: 19px 0;
+  margin: 9px 0 0;
   border: 1px solid value(B30);
   border-radius: 8px;
   cursor: pointer;
@@ -15,12 +15,20 @@
   align-items: center;
 }
 
-.root:selected {
-  border: 2px solid value(B10);
+.root :last-child {
+  padding-bottom: 0;
 }
 
-.root:selected:hover {
-  border: 2px solid value(B20);
+.root:size(small), .root:size(medium) {
+  padding: 18px;
+}
+
+.root:size(tiny) {
+  padding: 15px;
+}
+
+.root:selected {
+  border: 2px solid value(B10);
 }
 
 .root:selected:disabled {
@@ -49,10 +57,6 @@
   color: value(WHITE);
 }
 
-.root:selected:hover:not(:disabled)::selectedIcon {
-  background: value(B20);
-}
-
 .root:disabled::selectedIcon {
   background: value(D55);
 }
@@ -61,5 +65,12 @@
   color: value(D55);
 }
 
-.title {}
+.title {
+  padding-bottom: 6px;
+}
+
 .description {}
+
+.image {
+  padding-bottom: 12px;
+}

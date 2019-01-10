@@ -37,7 +37,7 @@ class Thumbnail extends React.PureComponent {
 
     return (
       <div
-        {...styles('root', { selected, disabled }, this.props)}
+        {...styles('root', { selected, disabled, size }, this.props)}
         data-hook={dataHook}
       >
         {selected && (
@@ -46,22 +46,31 @@ class Thumbnail extends React.PureComponent {
           </div>
         )}
 
-        {image && <div data-hook="thumbnail-image">{image}</div>}
-        <Text
-          className={styles.title}
-          data-hook="thumbnail-title"
-          weight="bold"
-          size={size}
-          tagName="div"
-        >
-          {title}
-        </Text>
+        {image && (
+          <div className={styles.image} data-hook="thumbnail-image">
+            {image}
+          </div>
+        )}
+        {title && (
+          <Text
+            className={styles.title}
+            data-hook="thumbnail-title"
+            size={size}
+            tagName="div"
+            weight="normal"
+          >
+            {title}
+          </Text>
+        )}
+
         {description && (
           <Text
             className={styles.description}
             data-hook="thumbnail-description"
             size={size}
+            weight="thin"
             tagName="div"
+            secondary="true"
           >
             {description}
           </Text>
