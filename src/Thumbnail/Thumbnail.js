@@ -11,17 +11,32 @@ class Thumbnail extends React.PureComponent {
   static propTypes = {
     dataHook: PropTypes.string,
 
-    /** Thumbnail title */
+    /** Title node */
     title: PropTypes.node,
+
+    /** Description node */
     description: PropTypes.node,
+
+    /** Image to display in thumbnail */
     image: PropTypes.node,
-    size: PropTypes.string,
+
+    /** Thumbnail size */
+    size: PropTypes.oneOf(['tiny', 'small', 'medium']),
+
+    /** Set selected state of thumbnail */
     selected: PropTypes.bool,
+
+    /** Set disabled state of thumbnail */
     disabled: PropTypes.bool,
+
+    /** Overrides title, description and image properties */
+    backgroundImage: PropTypes.node,
   };
 
   static defaultProps = {
     size: 'medium',
+    selected: false,
+    disabled: false,
   };
 
   render() {
