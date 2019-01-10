@@ -1,13 +1,13 @@
 :import {
-  -st-from: "wix-ui-backoffice/dist/src/colors.st.css";
-  -st-named: B10, B20, D55, WHITE;
+  -st-from: "wix-ui-core/src/themes/backoffice/colors.st.css";
+  -st-named: B10, B20, B30, D55, WHITE;
 }
 
 .root {
   -st-states: selected, disabled;
   position: relative;
   margin: 19px 0;
-  border: 1px solid #c8e7ff;
+  border: 1px solid value(B30);
   border-radius: 8px;
   cursor: pointer;
   display: flex;

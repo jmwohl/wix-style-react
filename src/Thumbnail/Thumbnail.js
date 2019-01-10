@@ -12,8 +12,8 @@ class Thumbnail extends React.PureComponent {
     dataHook: PropTypes.string,
 
     /** Thumbnail title */
-    title: PropTypes.string,
-    description: PropTypes.string,
+    title: PropTypes.node,
+    description: PropTypes.node,
     image: PropTypes.node,
     size: PropTypes.string,
     selected: PropTypes.bool,
@@ -21,7 +21,7 @@ class Thumbnail extends React.PureComponent {
   };
 
   static defaultProps = {
-    buttonText: 'Click me!',
+    size: 'medium',
   };
 
   render() {
