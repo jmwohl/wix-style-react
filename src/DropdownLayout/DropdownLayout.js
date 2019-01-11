@@ -61,24 +61,6 @@ class DropdownLayout extends WixComponent {
     }
   }
 
-  _isLegalOption(option) {
-    if (typeof option !== 'object' || typeof option.value === 'undefined') {
-      return false;
-    }
-
-    if (option.value === DIVIDER_OPTION_VALUE) {
-      return true;
-    }
-
-    return (
-      typeof option.id !== 'undefined' &&
-      option.id.toString().trim().length > 0 &&
-      (React.isValidElement(option.value) ||
-        ((typeof option.value === 'string' && option.value.trim().length > 0) ||
-          typeof option.value === 'function'))
-    );
-  }
-
   onClickOutside(event) {
     const { visible, onClickOutside } = this.props;
     if (visible && onClickOutside) {
