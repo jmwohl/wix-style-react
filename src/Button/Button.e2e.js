@@ -22,10 +22,6 @@ describe('Button', () => {
     await browser.executeScript(disableCSSAnimation);
   });
 
-  afterEach(async () => {
-    await autoExampleDriver.remount();
-  });
-
   const eyes = eyesItInstance();
 
   eyes.it('Make a screenshoft of all Button examples', () => {
