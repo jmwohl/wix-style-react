@@ -39,6 +39,18 @@ class Thumbnail extends React.PureComponent {
     disabled: false,
   };
 
+  resolveBackgroundImage = backgroundImage => {
+    if (typeof backgroundImage === 'string') {
+      return (
+        <div
+          className={styles.backgroundImage}
+          style={{ backgroundImage: `url(${backgroundImage})` }}
+        />
+      );
+    }
+    return backgroundImage;
+  };
+
   render() {
     const {
       dataHook,
@@ -48,11 +60,18 @@ class Thumbnail extends React.PureComponent {
       size,
       selected,
       disabled,
+      backgroundImage,
     } = this.props;
+
+    const hasBackground = !!backgroundImage;
 
     return (
       <div
-        {...styles('root', { selected, disabled, size }, this.props)}
+        {...styles(
+          'root',
+          { selected, disabled, size, hasBackground },
+          this.props,
+        )}
         data-hook={dataHook}
       >
         {selected && (
@@ -60,13 +79,13 @@ class Thumbnail extends React.PureComponent {
             <Check size="24" />
           </div>
         )}
-
-        {image && (
+        {hasBackground && this.resolveBackgroundImage(backgroundImage)}
+        {!hasBackground && image && (
           <div className={styles.image} data-hook="thumbnail-image">
             {image}
           </div>
         )}
-        {title && (
+        {!hasBackground && title && (
           <Text
             className={styles.title}
             data-hook="thumbnail-title"
@@ -77,15 +96,14 @@ class Thumbnail extends React.PureComponent {
             {title}
           </Text>
         )}
-
-        {description && (
+        {!hasBackground && description && (
           <Text
             className={styles.description}
             data-hook="thumbnail-description"
             size={size}
             weight="thin"
             tagName="div"
-            secondary="true"
+            secondary
           >
             {description}
           </Text>

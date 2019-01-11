@@ -3,27 +3,36 @@
   -st-named: B10, B20, B30, D55, WHITE;
 }
 
+:vars {
+  borderRadius: 8px;
+}
+
 .root {
-  -st-states: selected, disabled, size(enum(tiny, small, medium));
+  -st-states: selected, disabled, size(enum(tiny, small, medium)), hasBackground;
   position: relative;
   margin: 9px 0 0;
   border: 1px solid value(B30);
-  border-radius: 8px;
+  border-radius: value(borderRadius);
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.root:hasBackground {
+  padding: 0;
+  height: 100%;
+}
+
 .root :last-child {
   padding-bottom: 0;
 }
 
-.root:size(small), .root:size(medium) {
+.root:not(:hasBackground):size(small), .root:not(:hasBackground):size(medium) {
   padding: 18px;
 }
 
-.root:size(tiny) {
+.root:not(:hasBackground):size(tiny) {
   padding: 15px;
 }
 
@@ -44,9 +53,6 @@
   position: absolute;
   top: -10px;
   right: -10px;
-}
-
-.root:selected::selectedIcon {
   background: value(B10);
   width: 24px;
   height: 24px;
@@ -61,7 +67,7 @@
   background: value(D55);
 }
 
-.root:disabled .title, .root:disabled .description {
+.root:disabled::title, .root:disabled::description {
   color: value(D55);
 }
 
@@ -73,4 +79,12 @@
 
 .image {
   padding-bottom: 12px;
+}
+
+.backgroundImage {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: value(borderRadius);
 }
